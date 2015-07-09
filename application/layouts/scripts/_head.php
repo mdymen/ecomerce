@@ -102,7 +102,7 @@
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav">
                     <li><a href="<?php echo $this->baseUrl("/index"); ?>">Home</a></li>
-                    <li><a href="<?php echo $this->baseUrl("/catalogo"); ?>">Catálogo</a></li>
+                    <li><a href="<?php echo $this->baseUrl("/prensa"); ?>">Prensa</a></li>
                     <li><a href="<?php echo $this->baseUrl("/carrinho"); ?>">Carrinho</a></li>
                     <li><a href="<?php echo $this->baseUrl("/carrinho/checkout"); ?>">Checkout</a></li>
                     <li class="nav-dropdown">
