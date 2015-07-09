@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>Home - Mimity</title>
+    <title>World Fight</title>
 
     <?php $this->headLink()->appendStylesheet($this->baseUrl('assets/css/bootstrap.css'))?>
     <?php $this->headLink()->appendStylesheet($this->baseUrl('assets/css/font-awesome.min.css'))?>
@@ -31,8 +31,8 @@
 	        	<!-- Logo -->
 	            <div class="col-lg-4 col-md-3 hidden-sm hidden-xs">
 	            	<div class="well logo">
-	            		<a href="index.html">
-	            			Mimity <span>Online Shop</span>
+	            		<a href="<?php echo $this->baseUrl(""); ?>">
+	            			World Fight <span>Online Shop</span>
 	            		</a>
 	            		<div>Lorem ipsum dolor sit amet.</div>
 	            	</div>
@@ -101,22 +101,20 @@
             </div>
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav">
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="catalogue.html">Catalogue</a></li>
-                    <li><a href="cart.html">Shopping Cart</a></li>
-                    <li><a href="checkout.html">Checkout</a></li>
+                    <li><a href="<?php echo $this->baseUrl("/index"); ?>">Home</a></li>
+                    <li><a href="<?php echo $this->baseUrl("/catalogo"); ?>">Catálogo</a></li>
+                    <li><a href="<?php echo $this->baseUrl("/carrinho"); ?>">Carrinho</a></li>
+                    <li><a href="<?php echo $this->baseUrl("/carrinho/checkout"); ?>">Checkout</a></li>
                     <li class="nav-dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            Pages <span class="caret"></span>
+                            Mais... <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a href="about.html">About Us</a></li>
-                            <li><a href="contact.html">Contact Us</a></li>
-                            <li><a href="typography.html">Typography</a></li>
-                            <li><a href="detail.html">Product Detail</a></li>
-                            <li><a href="compare.html">Compare</a></li>
-                            <li><a href="login.html">Login</a></li>
-                            <li><a href="register.html">Register</a></li>
+                            <li><a href="<?php echo $this->baseUrl("/index/sobre"); ?>">Sobre nós</a></li>
+                            <li><a href="<?php echo $this->baseUrl("/index/contato"); ?>">Contato</a></li>
+<!--                            <li><a href="compare.html">Compare</a></li>-->
+                            <li><a href="<?php echo $this->baseUrl("/index/login"); ?>">Login</a></li>
+                            <li><a href="<?php echo $this->baseUrl("/index/cadastro"); ?>">Cadastro</a></li>
                         </ul>
                     </li>
                 </ul>
