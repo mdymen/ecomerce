@@ -1,5 +1,6 @@
 <?php
 
+require_once APPLICATION_PATH.'/Models/Usuarios.php';
 class indexController extends Zend_Controller_Action
 {
 
@@ -24,7 +25,7 @@ class indexController extends Zend_Controller_Action
     public function cadastroAction() {}
     
     public function cadastrarAction() {
-        $params = $this->request->getParams();
+        $params = $this->_request->getParams();
         
         $usuario = new Models_Usuarios();
         $usuario->save($params);

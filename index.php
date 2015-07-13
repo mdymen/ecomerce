@@ -15,3 +15,9 @@ and open the template in the editor.
         ?>
     </body>
 </html>
+
+
+<script type="text/javascript">
+    window.location = "http://www.worldfight.com.br/public/"
+
+</script>
