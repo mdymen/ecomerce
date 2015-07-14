@@ -16,5 +16,6 @@ class ProdutoController extends Zend_Controller_Action
     public function acabarAction() {}
     
     public function comparacaoAction() {}
+    
 }
 

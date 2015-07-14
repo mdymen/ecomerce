@@ -11,6 +11,24 @@
  *
  * @author Martin Dymenstein
  */
-class produtos {
-    //put your code here
+class Models_Produtos extends Zend_Db_Table {
+    
+    protected $_name = "Produtos";
+    protected $_db;
+    
+    function __construct($config = array(), $definition = null) {
+        parent::__construct($config, $definition);
+        $this->_db = Zend_Db_Table::getDefaultAdapter();
+    }
+    
+    function save($params) {
+        
+    }
+    
+    function getProduto($id) {
+        
+    }
+    
+    
+    
 }
