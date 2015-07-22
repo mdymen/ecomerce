@@ -29,7 +29,7 @@ $(function(){
 		return false
 	})
 	if ($('.product-main-image').exist()) {
-		$('.product-main-image').zoom();
+		//$('.product-main-image').zoom();
 	}
 
 	if ($('.bxslider').exist()) {
@@ -40,7 +40,7 @@ $(function(){
 	    });
 	}
 	if ($('.input-qty').exist()) {
-		$('.input-qty').TouchSpin();
+		//$('.input-qty').TouchSpin();
 	}
     if ($(window).width() > 750) {
     	$('.link-p img').centerImage();

@@ -1,8 +1,15 @@
+<?php
+
+$p = $this->producto;
+?>
+
+<input type="hidden" id="produto" value="<?php echo $p['ID_ID_PROD']; ?>" />
+
 <div class="container main-container">
         <div class="row">
-        	<div class="col-lg-3 col-md-3 col-sm-12">
+       	<div class="col-lg-3 col-md-3 col-sm-12">
 
-				<!-- Best Seller -->
+	<!-- 			 Best Seller 
 				<div class="col-lg-12 col-md-12 col-sm-12 visible-lg visible-md">
 					<div class="no-padding">
 	            		<span class="title">BEST SELLER</span>
@@ -38,7 +45,7 @@
 		                    </div>
 		                </div>
 				</div>
-				<!-- End Best Seller -->
+				 End Best Seller -->
 
         	</div>
 
@@ -47,7 +54,7 @@
 			<!-- Product Detail -->
         	<div class="col-lg-9 col-md-9 col-sm-12">
         		<div class="col-lg-12 col-sm-12">
-            		<span class="title">Live Nation 3 Days of Peace and Music Carbon</span>
+                        <span class="title"><?php echo $p['ST_NOME_PROD']; ?></span>
             	</div>
 	            <div class="col-lg-12 col-sm-12 hero-feature">
 
@@ -57,15 +64,15 @@
 							<div class="product-main-image-container">
 								<img src="<?php echo $this->baseUrl("assets/images/loader.gif"); ?>" alt="" class="product-loader" style="display: none;">
 								<span class="thumbnail product-main-image" style="position: relative; overflow: hidden;">
-									<img src="<?php echo $this->baseUrl("assets/images/detail1.jpg"); ?>" alt="">
+									<img src="<?php echo $this->baseUrl("assets/images/cam".$p['ID_ID_PROD']."frente.jpg"); ?>" alt="">
 								<img src="images/detail1.jpg" class="zoomImg" style="position: absolute; top: -0.33502538071066px; left: -0.0609137055837564px; opacity: 0; border: none; max-width: none; max-height: none; width: 400px; height: 400px;"></span>
 							</div>
 							<!-- End Main Image -->
 
 							<!-- Thumbnail Image -->
 							<div class="col-xs-3 product-thumb-image">
-								<a href="<?php echo $this->baseUrl("assets/images/detail1.jpg"); ?>" class="thumbnail">
-									<img src="<?php echo $this->baseUrl("assets/images/detail1.jpg"); ?>" alt="">
+								<a href="<?php echo $this->baseUrl("assets/images/cam".$p['ID_ID_PROD']."frente.jpg"); ?>" class="thumbnail">
+									<img src="<?php echo $this->baseUrl("assets/images/cam".$p['ID_ID_PROD']."frente.jpg"); ?>" alt="">
 								</a>
 							</div>
 							<div class="col-xs-3 product-thumb-image">
@@ -75,7 +82,7 @@
 							</div>
 							<div class="col-xs-3 product-thumb-image">
 								<a href="images/detail3.jpg" class="thumbnail">
-									<img src="<?php echo $this->baseUrl("assets/images/detail3.jpg"); ?>" alt="">
+									<img src="<?php echo $this->baseUrl("assets/images/cam".$p['ID_ID_PROD']."espalda.jpg"); ?>" alt="">
 								</a>
 							</div>
 							<div class="col-xs-3 product-thumb-image">
@@ -96,24 +103,25 @@
 									<div class="the-list">
 										<h3 class="col-xs-12">
 											<!-- <span class="price-old">$169</span> -->
-											$428.96
+											<?php echo 'R$ '.$p['VL_PRECO_PROD'] ?>
 										</h3>
 									</div>
 									<div class="the-list">
-										<div class="col-xs-4">Availability</div>
+										<div class="col-xs-4">Disponivel</div>
 										<div class="col-xs-8">
 											<!-- <span class="red">OUT OF STOCK</span> -->
-											<span class="green">98 items in stock</span>
+                                                                                        <span class="green"><?php echo $p['NM_STOCK_PROD']; ?> em stock</span>
 										</div>
 									</div>
 									<div class="the-list">
-										<div class="col-xs-4">Select</div>
+										<div class="col-xs-4">Tamanho</div>
 										<div class="col-xs-8">
 											<select class="form-control">
-												<option value="">Select Option</option>
-												<option value="option1">Option 1</option>
-												<option value="option2">Option 2</option>
-												<option value="option3">Option 3</option>
+												<option value="">Selecionar</option>
+												<option value="option1">P</option>
+												<option value="option2">M</option>
+												<option value="option3">G</option>
+                                                                                                <option value="option3">GG</option>
 											</select>
 										</div>
 									</div>
@@ -143,10 +151,10 @@
 									<hr>
 									<div class="col-xs-12 input-qty-detail">
 										<div class="input-group bootstrap-touchspin"><span class="input-group-btn"><button class="btn btn-default bootstrap-touchspin-down" type="button">-</button></span><span class="input-group-addon bootstrap-touchspin-prefix" style="display: none;"></span><input type="text" class="form-control input-qty text-center" value="1" style="display: block;"><span class="input-group-addon bootstrap-touchspin-postfix" style="display: none;"></span><span class="input-group-btn"><button class="btn btn-default bootstrap-touchspin-up" type="button">+</button></span></div>
-										<button class="btn btn-default pull-left"><i class="fa fa-shopping-cart"></i> Add to Cart</button>
+										<button id="btnAdicionar" class="btn btn-default pull-left"><i class="fa fa-shopping-cart"></i> Adicionar ao carrinho</button>
 									</div>
 									<div class="clearfix"></div><br>
-									<div class="col-xs-12 add-to-detail">
+<!--									<div class="col-xs-12 add-to-detail">
 										<div class="row">
 										<div class="col-xs-6 text-center">
 											<a href="compare.html"><i class="fa fa-list"></i> Add to Compare</a>
@@ -155,7 +163,7 @@
 											<a href="wishlist.html"><i class="fa fa-heart"></i> Add to Wishlist</a>
 										</div>
 										</div>
-									</div>
+									</div>-->
 								</div>
 							</div>
 						</div>
@@ -165,32 +173,21 @@
 						<div class="col-xs-12 product-detail-tab">
 							<!-- Nav tabs -->
 							<ul class="nav nav-tabs">
-								<li class="active"><a href="#desc" data-toggle="tab">Description</a></li>
-								<li><a href="#detail" data-toggle="tab">Detail</a></li>
-								<li><a href="#review" data-toggle="tab">Review</a></li>
+								<li class="active"><a href="#desc" data-toggle="tab">Descrição</a></li>
+								<li><a href="#detail" data-toggle="tab">Historia</a></li>
+<!--								<li><a href="#review" data-toggle="tab">Opin</a></li>-->
 							</ul>
 
 							<!-- Tab panes -->
 							<div class="tab-content">
 								<div class="tab-pane active" id="desc">
 									<div class="well">
-										<p>Actually this part of clothes is very unique and original. It is a way of self-expression because nowadays making some logo or phrase has become very popular. Obviously the T-shirts are the part of modern culture and they have a great influence on teens because of their freedom and epatage. We are offering you our unique and original products. </p>
+										<p><?php echo $p['ST_DESCRICAO_PROD']; ?></p>
 									</div>
 								</div>
 								<div class="tab-pane" id="detail">
 									<div class="well">
-										<table class="table table-bordered">
-											<tbody>
-												<tr>
-													<td width="40%">Lorem</td>
-													<td>Ipsum</td>
-												</tr>
-												<tr>
-													<td>Dolor</td>
-													<td>Sit Amet</td>
-												</tr>
-											</tbody>
-										</table>
+										<?php echo $p['ST_HISTORIA_PROD']; ?>
 									</div>
 								</div>
 								<div class="tab-pane" id="review">
@@ -268,7 +265,7 @@
 	             -->
 	            </div>
 	            <div class="clearfix"></div>
-	            <div class="col-lg-12 col-sm-12">
+	          <!--  <div class="col-lg-12 col-sm-12">
             		<span class="title">RELATED PRODUCTS</span>
             	</div>
             	<div class="col-lg-4 col-sm-4 hero-feature text-center">
@@ -328,3 +325,14 @@
 
         </div>
 	</div>
+    
+    <script type="text/javascript">
+        $(function() {
+           $('#btnAdicionar').bind('click', function() {
+               $.post("adicionar", {produto: $('#produto').val(), tamanho: $('#tamanho').val() }, function(response) {
+                   console.log(response);
+               })
+           }) 
+        });
+    
+    </script>

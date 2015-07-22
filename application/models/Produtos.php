@@ -26,7 +26,11 @@ class Models_Produtos extends Zend_Db_Table {
     }
     
     function getProduto($id) {
+        $db = $this->_db;
         
+        $select = $db->select()->from("produtos")->where("ID_ID_PROD = ? ",$id);
+
+        return $select->query()->fetch();
     }
     
     
