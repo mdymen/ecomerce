@@ -4,6 +4,8 @@ $p = $this->producto;
 ?>
 
 <input type="hidden" id="produto" value="<?php echo $p['ID_ID_PROD']; ?>" />
+<input type="hidden" id="url" value="<?php echo $this->baseUrl('/produto/index?id='.$p['ID_ID_PROD']); ?>" />
+<input type="hidden" id="urlCarrinho" value="<?php echo $this->baseUrl('/carrinho/index'); ?>" />
 
 <div class="container main-container">
         <div class="row">
@@ -54,7 +56,7 @@ $p = $this->producto;
 			<!-- Product Detail -->
         	<div class="col-lg-9 col-md-9 col-sm-12">
         		<div class="col-lg-12 col-sm-12">
-                        <span class="title"><?php echo $p['ST_NOME_PROD']; ?></span>
+                        <span class="title" id="titulo"><?php echo $p['ST_NOME_PROD']; ?></span>
             	</div>
 	            <div class="col-lg-12 col-sm-12 hero-feature">
 
@@ -102,8 +104,10 @@ $p = $this->producto;
 								<div class="row">
 									<div class="the-list">
 										<h3 class="col-xs-12">
-											<!-- <span class="price-old">$169</span> -->
-											<?php echo 'R$ '.$p['VL_PRECO_PROD'] ?>
+                                                                                    R$
+                                                                                    <span class="price-old" id="preco">
+											<?php echo $p['VL_PRECO_PROD'] ?>
+                                                                                    </span>
 										</h3>
 									</div>
 									<div class="the-list">
@@ -116,12 +120,12 @@ $p = $this->producto;
 									<div class="the-list">
 										<div class="col-xs-4">Tamanho</div>
 										<div class="col-xs-8">
-											<select class="form-control">
+											<select id="tamanho" class="form-control">
 												<option value="">Selecionar</option>
-												<option value="option1">P</option>
-												<option value="option2">M</option>
-												<option value="option3">G</option>
-                                                                                                <option value="option3">GG</option>
+												<option value="P">P</option>
+												<option value="M">M</option>
+												<option value="G">G</option>
+                                                                                                <option value="GG">GG</option>
 											</select>
 										</div>
 									</div>
@@ -150,7 +154,7 @@ $p = $this->producto;
 									<div class="clearfix"></div>
 									<hr>
 									<div class="col-xs-12 input-qty-detail">
-										<div class="input-group bootstrap-touchspin"><span class="input-group-btn"><button class="btn btn-default bootstrap-touchspin-down" type="button">-</button></span><span class="input-group-addon bootstrap-touchspin-prefix" style="display: none;"></span><input type="text" class="form-control input-qty text-center" value="1" style="display: block;"><span class="input-group-addon bootstrap-touchspin-postfix" style="display: none;"></span><span class="input-group-btn"><button class="btn btn-default bootstrap-touchspin-up" type="button">+</button></span></div>
+										<div class="input-group bootstrap-touchspin"><span class="input-group-btn"><button class="btn btn-default bootstrap-touchspin-down" id="bajar" type="button">-</button></span><span class="input-group-addon bootstrap-touchspin-prefix" style="display: none;"></span><input type="text" id="quantidade" class="form-control input-qty text-center" value="1" style="display: block;"><span class="input-group-addon bootstrap-touchspin-postfix" style="display: none;"></span><span class="input-group-btn"><button id="subir" class="btn btn-default bootstrap-touchspin-up" type="button">+</button></span></div>
 										<button id="btnAdicionar" class="btn btn-default pull-left"><i class="fa fa-shopping-cart"></i> Adicionar ao carrinho</button>
 									</div>
 									<div class="clearfix"></div><br>
@@ -328,9 +332,40 @@ $p = $this->producto;
     
     <script type="text/javascript">
         $(function() {
+            $('#subir').bind('click', function() {
+               var valor = Number($('#quantidade').val());
+               $('#quantidade').val(valor+Number(1));
+            });
+
+            $('#bajar').bind('click', function() {
+               var valor = Number($('#quantidade').val());
+               if (valor > 1) {
+                $('#quantidade').val(valor-Number(1));
+                }
+            });
+
            $('#btnAdicionar').bind('click', function() {
-               $.post("adicionar", {produto: $('#produto').val(), tamanho: $('#tamanho').val() }, function(response) {
-                   console.log(response);
+               $.post("adicionar", {quantidade: $('#quantidade').val(), produto: $('#produto').val(), titulo: $('#titulo').html(), tamanho: $('#tamanho').val(), preco: $('#preco').html() }, function(response) {
+                   
+                   var html = "";
+                   var total = Number(0);
+                   var i = Number(0);
+                   $.each(response, function(key, value) {
+                        var id = (response[key].id);               
+                        var titulo = (response[key].titulo);
+                        var tamanho = response[key].tamanho;
+                        var preco = response[key].preco;
+                        var quantidade = response[key].quantidade;
+                        
+                        html = html + '<li><a href="'+$('#url').val()+'"><b>'+titulo+'</b><span>('+quantidade+') - '+tamanho+' R$' + preco + '</span></a></li>';
+                        total = total + Number(preco);
+                        i += Number(quantidade);
+                   });
+                    var urlCarro = $('#urlCarrinho').val();
+                    console.log(urlCarro);
+                    var tot = '<li class="divider"></li><li><a href="'+urlCarro+'">Total: R$ '+total+'</a></li>';
+                    $('#carrinho').html(html+tot); 
+                    $('#tituloCarrinho').html('Carrinho: '+i+' item(s)');
                })
            }) 
         });

@@ -53,31 +53,39 @@
 	                </div>
 	            </div>
 	            <!-- End Search Form -->
-
+                    
+                    <?php
+                                $storage = new Zend_Auth_Storage_Session();
+                                $data = $storage->read();
+                    
+                    ?>
+                    
 	            <!-- Shopping Cart List -->
 	            <div class="col-lg-3 col-md-4 col-sm-5">
 	                <div class="well">
 	                    <div class="btn-group btn-group-cart">
 	                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
                                 <span class="pull-left"><i class="fa fa-shopping-cart icon-cart"></i></span>
-                                <span class="pull-left">Shopping Cart: 2 item(s)</span>
+                                <span id="tituloCarrinho" class="pull-left">Carrinho: <?php echo count($data); ?> item(s)</span>
                                 <span class="pull-right"><i class="fa fa-caret-down"></i></span>
                             </button>
-                            <ul class="dropdown-menu cart-content" role="menu">
-                                <li>
-                                    <a href="detail.html">
-                                        <b>Penn State College T-Shirt</b>
-                                        <span>x1 $528.96</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="detail.html">
-                                        <b>Live Nation ACDC Gray T-Shirt</b>
-                                        <span>x1 $428.96</span>
-                                    </a>
-                                </li>
+                            <ul id="carrinho" class="dropdown-menu cart-content" role="menu">
+                                <?php
+                                   $valor = 0;
+                                    for ($i =0; $i < count($data); $i++) {
+                                        
+                                        echo '<li>
+                                            <a href="'.$this->baseUrl('/produto/index?id='.$data[$i]['id']).'">
+                                                <b>'.$data[$i]['titulo'].'</b>
+                                                <span>'.$data[$i]['tamanho'].' R$'.$data[$i]['preco'].'</span>
+                                            </a>
+                                        </li> ';   
+                                        $valor += $data[$i]['preco'];
+                                    }
+                                
+                                ?>
                                 <li class="divider"></li>
-                                <li><a href="cart.html">Total: $957.92</a></li>
+                                <li><a href="<?php echo $this->baseUrl('/carrinho/index') ?>">Total: R$<?php echo $valor; ?></a></li>
                             </ul>
 	                    </div>
 	                </div>
