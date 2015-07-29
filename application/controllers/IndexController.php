@@ -11,9 +11,9 @@ class indexController extends Zend_Controller_Action
 
     public function indexAction()
     {
-       /* $xml = file_get_contents("http://ws.correios.com.br/calculador/CalcPrecoPrazo.asmx/CalcPrazo?nCdServico=40010&sCepOrigem=13015130&sCepDestino=13010215");
-        print_r($xml);
-        die(".");*/
+//        $xml = file_get_contents("http://ws.correios.com.br/calculador/CalcPrecoPrazo.asmx/CalcPrazo?nCdServico=40010&sCepOrigem=13015130&sCepDestino=13010215");
+//        print_r($xml);
+//        die(".");
     }
     
     public function acabarAction() {}
