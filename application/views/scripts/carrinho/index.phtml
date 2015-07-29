@@ -126,9 +126,9 @@
                         </tbody>
 					</table>
 					<div class="btn-group btns-cart">
-						<button type="button" class="btn btn-primary" onclick="window.location='catalogue.html'"><i class="fa fa-arrow-circle-left"></i> Continuar Comprando</button>
+						<a class="btn btn-primary" href="<?php echo $this->baseUrl("/"); ?>"><i class="fa fa-arrow-circle-left"></i> Continuar Comprando</a>
 						<button type="button" class="btn btn-primary">Atualizar Carrinho</button>
-						<button type="button" class="btn btn-primary" onclick="window.location='checkout/index'">Encerrar Carrinho <i class="fa fa-arrow-circle-right"></i></button>
+						<a class="btn btn-primary" href="<?php echo $this->baseUrl("/carrinho/checkout"); ?>">Encerrar Carrinho <i class="fa fa-arrow-circle-right"></i></a>
 					</div>
 
 	            </div>
