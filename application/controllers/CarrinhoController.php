@@ -35,5 +35,32 @@ class CarrinhoController extends Zend_Controller_Action
         $this->_helper->viewRenderer->setNoRender(TRUE);
         $this->_helper->json($paises); 
     }
+    
+    public function excluirprodutoAction() {
+        $params = $this->_request->getParams();
+                        
+        $storage = new Zend_Auth_Storage_Session();
+        $data = $storage->read();
+        
+        $idVenta = $params['idventa'];
+        
+        $novo = array();
+        for ($i = 0; $i < count($data); $i++) {
+            if ($data[$i]['idVenta'] != $idVenta) {
+                array_push($novo, $data[$i]);
+            }
+        }
+
+        $storage->clear();
+        $storage->write($novo);
+        
+        $this->getResponse()
+         ->setHeader('Content-Type', 'application/json');
+        
+        $this->_helper->layout->disableLayout();
+        $this->_helper->viewRenderer->setNoRender(TRUE);
+        $this->_helper->json($storage->read()); 
+        
+    }
 }
 

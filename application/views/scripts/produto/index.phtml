@@ -345,7 +345,8 @@ $p = $this->producto;
             });
 
            $('#btnAdicionar').bind('click', function() {
-               $.post("adicionar", {quantidade: $('#quantidade').val(), produto: $('#produto').val(), titulo: $('#titulo').html(), tamanho: $('#tamanho').val(), preco: $('#preco').html() }, function(response) {
+                var idVenta = Math.floor((Math.random() * 10000) + 1);
+                $.post("adicionar", {quantidade: $('#quantidade').val(), produto: $('#produto').val(), titulo: $('#titulo').html(), tamanho: $('#tamanho').val(), preco: $('#preco').html(), idVenta: idVenta }, function(response) {
                    
                    var html = "";
                    var total = Number(0);
@@ -362,7 +363,7 @@ $p = $this->producto;
                         i += Number(quantidade);
                    });
                     var urlCarro = $('#urlCarrinho').val();
-                    console.log(urlCarro);
+                    console.log(response);
                     var tot = '<li class="divider"></li><li><a href="'+urlCarro+'">Total: R$ '+total+'</a></li>';
                     $('#carrinho').html(html+tot); 
                     $('#tituloCarrinho').html('Carrinho: '+i+' item(s)');

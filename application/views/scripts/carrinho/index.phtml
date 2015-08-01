@@ -1,3 +1,10 @@
+<?php 
+
+ echo '<input type="hidden" value="'.$this->baseUrl('/carrinho/excluirproduto').'" id="dir" />';
+
+?>
+
+
 <div class="container main-container">
         <div class="row">
         	<div class="col-lg-3 col-md-3 col-sm-12">
@@ -91,10 +98,7 @@
                                 <td><a href="detail.html">'.$data[$i]['titulo'].'</a>
                                 </td>
                                 <td>
-                                    <select name="">
-                                        <option value="" selected="selected">S</option>
-                                        <option value="">M</option>
-                                    </select>
+                                    '.$data[$i]['tamanho'].'
                                 </td>
                                 <td>-</td>
                                 <td>
@@ -104,7 +108,7 @@
                                 <td>R$ '.$data[$i]['preco'].'</td>
                                 <td class="text-center">
                                     <a href="#" class="remove_cart" rel="2">
-                                        <i class="fa fa-trash-o excluir" data-pos="'.$i.'"></i>
+                                        <i class="fa fa-trash-o excluir" data-idVenta="'.$data[$i]['idVenta'].'" data-pos="'.$i.'"></i>
                                     </a>
                                 </td>
                             </tr>
@@ -127,7 +131,6 @@
 					</table>
 					<div class="btn-group btns-cart">
 						<a class="btn btn-primary" href="<?php echo $this->baseUrl("/"); ?>"><i class="fa fa-arrow-circle-left"></i> Continuar Comprando</a>
-						<button type="button" class="btn btn-primary">Atualizar Carrinho</button>
 						<a class="btn btn-primary" href="<?php echo $this->baseUrl("/carrinho/checkout"); ?>">Encerrar Carrinho <i class="fa fa-arrow-circle-right"></i></a>
 					</div>
 
@@ -143,9 +146,14 @@
 <script type="text/javascript">
     
     $(function() {
-       $('.excluir').bind('click', function() {
-           
-       });
+        $('.excluir').bind('click', function() {
+           var idVenta = $(this).data('idventa');
+           var dir = $('#dir').val();
+           $.post(dir, {idventa:idVenta}, function(response) {
+               window.location.reload();
+               console.log(response);
+           });
+        });
     });
     
     

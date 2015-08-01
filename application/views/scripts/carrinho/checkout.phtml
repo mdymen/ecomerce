@@ -2,6 +2,10 @@
 
  $estados = $this->estados;
  
+// $storage = new Zend_Auth_Storage_Session();
+// print_r($storage->read());
+// die('.');
+ 
 ?>
 
 <div class="container main-container">
@@ -134,9 +138,6 @@
                             <?php
                                 $total = 0;
                             for ($i = 0; $i < count($data); $i++) {
-                                
-                                
-                            
                                 if ($total == 0) {
                                     echo '<table class="table table-bordered tbl-cart">
 						<thead>
@@ -165,10 +166,7 @@
                                 <td><a href="detail.html">'.$data[$i]['titulo'].'</a>
                                 </td>
                                 <td>
-                                    <select name="">
-                                        <option value="" selected="selected">S</option>
-                                        <option value="">M</option>
-                                    </select>
+                                    '.$data[$i]['tamanho'].'
                                 </td>
                                 <td>-</td>
                                 <td>
@@ -178,7 +176,7 @@
                                 <td>R$ '.$data[$i]['preco'].'</td>
                                 <td class="text-center">
                                     <a href="#" class="remove_cart" rel="2">
-                                        <i class="fa fa-trash-o excluir" data-pos="'.$i.'"></i>
+                                        <i class="fa fa-trash-o excluir" data-idVenta="'.$data[$i]['idVenta'].'" data-pos="'.$i.'"></i>
                                     </a>
                                 </td>
                             </tr>
@@ -219,6 +217,14 @@
            $.post('cidade',{estado: $('#estado').val()}, function(response) {
                console.log(response);
            }) ;
+        });
+        
+        $('.excluir').bind('click', function() {
+           var idVenta = $(this).data('idventa');
+           $.post('excluirproduto', {idventa:idVenta}, function(response) {
+               window.location.reload();
+                console.log(response);
+           });
         });
     });
 

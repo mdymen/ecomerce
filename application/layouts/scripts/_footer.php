@@ -37,14 +37,14 @@
                 <div class="column">
                     <h4>Redes Sociais</h4>
                     <ul class="social">
-                        <li><a href="#">Facebook</a></li>
-                        <li><a href="#">Twitter</a></li>
+                        <li><a href="https://www.facebook.com/pages/World-Fight/387486434779917?ref=bookmarks">Facebook</a></li>
+                        <li><a href="https://twitter.com/worldfightBR">Twitter</a></li>
                     </ul>
                 </div>
             </div>
         </div>
         <div class="navbar-inverse text-center copyright">
-            Copyright © 2015 Mimity All right reserved
+            Copyright © 2015 
         </div>
     </footer>
 
