@@ -9,8 +9,26 @@ class indexController extends Zend_Controller_Action
         /* Initialize action controller here */
     }
 
-    public function indexAction()
+    function xml2array ( $xmlObject, $out = array () )
+{
+    foreach ( (array) $xmlObject as $index => $node )
+        $out[$index] = ( is_object ( $node ) ) ? $this->xml2array ( $node ) : $node;
+
+    return $out;
+}
+    
+    public function indexAction()       
     {
+//        $xml = file_get_contents("http://ws.correios.com.br/calculador/CalcPrecoPrazo.asmx/CalcPreco?nCdEmpresa=&sDsSenha=&nCdServico=40010&sCepOrigem=13015130&sCepDestino=13010215&nVlPeso=1&nCdFormato=1&nVlComprimento=16.0&nVlAltura=2.0&nVlLargura=11.0&nVlDiametro=1.0&sCdMaoPropria=N&nVlValorDeclarado=0&sCdAvisoRecebimento=N");
+//        
+//        $res = new SimpleXMLElement($xml);
+//        
+//         $out = $this->xml2array($res);
+//        
+//        print_r($out);
+//        die('.');
+//        
+        
 //        $xml = file_get_contents("http://ws.correios.com.br/calculador/CalcPrecoPrazo.asmx/CalcPrazo?nCdServico=40010&sCepOrigem=13015130&sCepDestino=13010215");
 //        print_r($xml);
 //        die(".");

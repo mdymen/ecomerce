@@ -130,27 +130,32 @@ $p = $this->producto;
 										</div>
 									</div>
 									<div class="the-list">
-										<div class="col-xs-4">Checkbox</div>
+										<div class="col-xs-4">Frete e prazo</div>
 										<div class="col-xs-8">
 											<label>
-												<input type="checkbox" value="check1"> Check 1
+												<input class="form-control" id="CEP" name="CEP" type="text" placeholder="CEP" size="8">
 											</label>&nbsp;
 											<label>
-												<input type="checkbox" value="check2" checked=""> Check 2
+												<a href="javascript:void(0);" id="correio" class="btn btn-default">Calcular</a>
 											</label>
 										</div>
 									</div>
 									<div class="the-list">
-										<div class="col-xs-4">Radio</div>
+										<div class="col-xs-4">Preco frete</div>
 										<div class="col-xs-8">
-											<label>
-												<input type="radio" name="radio" value="radio1" checked=""> Radio 1
-											</label>&nbsp;
-											<label>
-												<input type="radio" name="radio" value="radio2"> Radio 2
-											</label>
+                                                                                    <label>
+                                                                                        <div id="precofrete">Nao calculado</div>
+                                                                                    </label>
 										</div>
 									</div>
+									<div class="the-list">
+										<div class="col-xs-4">Dias</div>
+										<div class="col-xs-8">
+                                                                                    <label>
+                                                                                        <div id="diasfrete">Nao calculado</div>
+                                                                                    </label>
+										</div>
+									</div>                                                                    
 									<div class="clearfix"></div>
 									<hr>
 									<div class="col-xs-12 input-qty-detail">
@@ -342,6 +347,24 @@ $p = $this->producto;
                if (valor > 1) {
                 $('#quantidade').val(valor-Number(1));
                 }
+            });
+            
+            $('#correio').bind('click', function() {
+                $.post('correio',{CEP: $('#CEP').val()}, function(response) {
+                   var prazo = response.Prazo.PrazoEntrega + " dia(s)";
+                   var preco = 'R$ ' + response.Preco.Valor;
+                   if (response.Prazo.MsgErro.length !== 0) {
+                       prazo = '<font color="red">'+response.Prazo.MsgErro+'</font>';
+                   }
+                   
+                   if (response.Preco.MsgErro.length !== 0) {
+                       preco = '<font color="red">'+response.Preco.MsgErro+'</font>';
+                   }
+        
+                    $('#precofrete').html(preco);
+                    $('#diasfrete').html(prazo);
+                    console.log(response);
+                });
             });
 
            $('#btnAdicionar').bind('click', function() {

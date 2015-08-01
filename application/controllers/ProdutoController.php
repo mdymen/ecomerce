@@ -97,5 +97,37 @@ class ProdutoController extends Zend_Controller_Action
         $this->redirect();
     }
     
+    function xml2array ( $xmlObject, $out = array () )
+    {
+        foreach ( (array) $xmlObject as $index => $node ) {
+            $out[$index] = ( is_object ( $node ) ) ? $this->xml2array ( $node ) : $node;
+        }
+            
+        return $out;
+    }
+    
+    public function correioAction() {
+        $params = $this->_request->getParams();
+        
+        $prazo = file_get_contents("http://ws.correios.com.br/calculador/CalcPrecoPrazo.asmx/CalcPrazo?nCdServico=40010&sCepOrigem=13010215&sCepDestino=".$params['CEP']);
+        
+        $preco = file_get_contents("http://ws.correios.com.br/calculador/CalcPrecoPrazo.asmx/CalcPreco?nCdEmpresa=&sDsSenha=&nCdServico=40010&sCepOrigem=13010215&sCepDestino=".$params['CEP']."&nVlPeso=1&nCdFormato=1&nVlComprimento=16.0&nVlAltura=2.0&nVlLargura=11.0&nVlDiametro=1.0&sCdMaoPropria=N&nVlValorDeclarado=0&sCdAvisoRecebimento=N");
+
+        $res = $this->xml2array(new SimpleXMLElement($preco));
+        $resPrazo = $this->xml2array(new SimpleXMLElement($prazo));
+        
+        $resultado['Preco'] = $res['Servicos']['cServico'];
+        $resultado['Prazo'] = $resPrazo['Servicos']['cServico'];
+//        print_r($xml);
+//        die(".");
+                
+                        $this->getResponse()
+         ->setHeader('Content-Type', 'application/json');
+        
+        $this->_helper->layout->disableLayout();
+        $this->_helper->viewRenderer->setNoRender(TRUE);
+        $this->_helper->json($resultado); 
+    }
+    
 }
 
