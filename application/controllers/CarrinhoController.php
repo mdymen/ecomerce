@@ -1,6 +1,7 @@
 <?php
 
 include_once APPLICATION_PATH.'/models/pais.php';
+include_once APPLICATION_PATH.'/models/pedidos.php';
 class CarrinhoController extends Zend_Controller_Action
 {
 
@@ -26,14 +27,14 @@ class CarrinhoController extends Zend_Controller_Action
         $params = $this->_request->getParams();
         
         $pais = new Models_Pais();
-        $paises = $pais->cidades($params['estado']);
+        $cidades = $pais->cidades($params['estado']);
         
         $this->getResponse()
          ->setHeader('Content-Type', 'application/json');
         
         $this->_helper->layout->disableLayout();
         $this->_helper->viewRenderer->setNoRender(TRUE);
-        $this->_helper->json($paises); 
+        $this->_helper->json($cidades); 
     }
     
     public function excluirprodutoAction() {
@@ -61,6 +62,26 @@ class CarrinhoController extends Zend_Controller_Action
         $this->_helper->viewRenderer->setNoRender(TRUE);
         $this->_helper->json($storage->read()); 
         
+    }
+    
+    function encerrarAction() {
+        $params = $this->_request->getParams();
+ 
+        $pedidos = new Models_Pedidos();
+        
+        $idPedido = $pedidos->save($params);
+        
+        $storage = new Zend_Auth_Storage_Session();
+        $data = $storage->read();
+        
+        $pedidos->save_produtos($idPedido, $data);
+        
+//         print_r($prod);
+//        die('.');
+        
+        //
+        //
+        //$pedidos->sa
     }
 }
 

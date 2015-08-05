@@ -16,7 +16,7 @@
 	            	</div>
 		                <div class="thumbnail col-lg-12 col-md-12 col-sm-6 text-center">
 		                	<a href="<?php echo $this->baseUrl("/produto/index?id=1"); ?>" class="link-p" style="overflow: hidden; position: relative;">
-		                    	<img src="/ecomerce/public/assets/images/cam1frente.jpg" alt="" style="position: absolute; width: 224px; height: auto; max-width: none; max-height: none; left: 0px; top: 0px;">
+		                    	<img src="<?php echo $this->baseUrl("assets/images/cam1frente.jpg"); ?>" alt="" style="position: absolute; width: 224px; height: auto; max-width: none; max-height: none; left: 0px; top: 0px;">
 		                	</a>
 		                    <div class="caption prod-caption">
                                         <h4><a href="<?php echo $this->baseUrl("/produto/index?id=1"); ?>">Camiseta Born To Fight</a></h4>
@@ -92,7 +92,7 @@
                                 echo '<tr>
                                 <td class="hidden-xs">
                                     <a href="'.$this->baseUrl('/produto/index?id='.$data[$i]['id']).'">
-                                        <img src="'.$this->baseUrl("assets/images/product-2.jpg").'" alt="'.$data[$i]['titulo'].'" title="" width="47" height="47">
+                                        <img src="'.$this->baseUrl("assets/images/cam".$data[$i]['id']."frente.jpg").'" alt="'.$data[$i]['titulo'].'" title="" width="47" height="47">
                                     </a>
                                 </td>
                                 <td><a href="detail.html">'.$data[$i]['titulo'].'</a>

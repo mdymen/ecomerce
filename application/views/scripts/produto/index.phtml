@@ -78,18 +78,18 @@ $p = $this->producto;
 								</a>
 							</div>
 							<div class="col-xs-3 product-thumb-image">
-								<a href="images/detail2.jpg" class="thumbnail">
-									<img src="<?php echo $this->baseUrl("assets/images/detail2.jpg"); ?>" alt="">
+								<a href="<?php echo $this->baseUrl("assets/images/cam".$p['ID_ID_PROD']."frentedisenho.jpg"); ?> "class="thumbnail">
+									<img src="<?php echo $this->baseUrl("assets/images/cam".$p['ID_ID_PROD']."frentedisenho.jpg"); ?>" alt="">
 								</a>
 							</div>
 							<div class="col-xs-3 product-thumb-image">
-								<a href="images/detail3.jpg" class="thumbnail">
+								<a href="<?php echo $this->baseUrl("assets/images/cam".$p['ID_ID_PROD']."espalda.jpg"); ?>" class="thumbnail">
 									<img src="<?php echo $this->baseUrl("assets/images/cam".$p['ID_ID_PROD']."espalda.jpg"); ?>" alt="">
 								</a>
 							</div>
 							<div class="col-xs-3 product-thumb-image">
-								<a href="images/detail1.jpg" class="thumbnail">
-									<img src="<?php echo $this->baseUrl("assets/images/detail1.jpg"); ?>" alt="">
+								<a href="<?php echo $this->baseUrl("assets/images/cam".$p['ID_ID_PROD']."espaldadisenho.jpg"); ?>" class="thumbnail">
+									<img src="<?php echo $this->baseUrl("assets/images/cam".$p['ID_ID_PROD']."espaldadisenho.jpg"); ?>" alt="">
 								</a>
 							</div>
 							<!-- End Thumbnail Image -->
@@ -161,7 +161,9 @@ $p = $this->producto;
 									<div class="col-xs-12 input-qty-detail">
 										<div class="input-group bootstrap-touchspin"><span class="input-group-btn"><button class="btn btn-default bootstrap-touchspin-down" id="bajar" type="button">-</button></span><span class="input-group-addon bootstrap-touchspin-prefix" style="display: none;"></span><input type="text" id="quantidade" class="form-control input-qty text-center" value="1" style="display: block;"><span class="input-group-addon bootstrap-touchspin-postfix" style="display: none;"></span><span class="input-group-btn"><button id="subir" class="btn btn-default bootstrap-touchspin-up" type="button">+</button></span></div>
 										<button id="btnAdicionar" class="btn btn-default pull-left"><i class="fa fa-shopping-cart"></i> Adicionar ao carrinho</button>
+                                                                                
 									</div>
+                                                                        <div style="display:none;" id="carrinhoExito" class="col-xs-12 input-qty-detail"><font color="green">Produto adicionado com exito no carrinho!!</font></div>
 									<div class="clearfix"></div><br>
 <!--									<div class="col-xs-12 add-to-detail">
 										<div class="row">
@@ -390,6 +392,7 @@ $p = $this->producto;
                     var tot = '<li class="divider"></li><li><a href="'+urlCarro+'">Total: R$ '+total+'</a></li>';
                     $('#carrinho').html(html+tot); 
                     $('#tituloCarrinho').html('Carrinho: '+i+' item(s)');
+                    $('#carrinhoExito').css("display","inline");
                })
            }) 
         });

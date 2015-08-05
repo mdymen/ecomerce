@@ -113,8 +113,8 @@
                             <li><a href="http://www.worldfight.com.br/wordpress">Blog</a></li>
                             <li><a href="<?php echo $this->baseUrl("/index/contato"); ?>">Contato</a></li>
 <!--                            <li><a href="compare.html">Compare</a></li>-->
-                            <li><a href="<?php echo $this->baseUrl("/index/login"); ?>">Login</a></li>
-                            <li><a href="<?php echo $this->baseUrl("/index/cadastro"); ?>">Cadastro</a></li>
+<!--                            <li><a href="<?php echo $this->baseUrl("/index/login"); ?>">Login</a></li>
+                            <li><a href="<?php echo $this->baseUrl("/index/cadastro"); ?>">Cadastro</a></li>-->
                         </ul>
                     </li>
                 </ul>

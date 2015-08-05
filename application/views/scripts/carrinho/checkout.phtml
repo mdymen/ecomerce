@@ -15,19 +15,19 @@
 				<!-- RECENT PRODUCT -->
 				<div class="col-lg-12 col-md-12 col-sm-12">
 					<div class="no-padding">
-	            		<span class="title">RECENT PRODUCT</span>
+	            		<span class="title">BEST SELLER</span>
 	            	</div>
 		                <div class="thumbnail col-lg-12 col-md-12 col-sm-6 text-center">
-		                	<a href="detail.html" class="link-p" style="overflow: hidden; position: relative;">
-		                    	<img src="<?php echo $this->baseUrl("assets/images/product-5.jpg"); ?>" alt="" style="position: absolute; width: 250px; height: auto; max-width: none; max-height: none; left: -13px; top: 0px;">
+		                	<a href="<?php echo $this->baseUrl("/produto/index?id=1"); ?>" class="link-p" style="overflow: hidden; position: relative;">
+		                    	<img src="<?php echo $this->baseUrl("assets/images/cam1frente.jpg"); ?>" alt="" style="position: absolute; width: 224px; height: auto; max-width: none; max-height: none; left: 0px; top: 0px;">
 		                	</a>
 		                    <div class="caption prod-caption">
-		                        <h4><a href="detail.html">Live Nation 3 Days of Peace and Music Carbon</a></h4>
-		                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut, minima!</p>
+                                        <h4><a href="<?php echo $this->baseUrl("/produto/index?id=1"); ?>">Camiseta Born To Fight</a></h4>
+		                        <p>Fachada da sede do Andre Gomes Team. Os melhores lutadores da historia do Muaythai tiraram fotos.</p>
 		                        <p>
 		                        	</p><div class="btn-group">
-			                        	<a href="#" class="btn btn-default">$ 428.96</a>
-			                        	<a href="#" class="btn btn-primary"><i class="fa fa-shopping-cart"></i> Buy</a>
+			                        	<a href="#" class="btn btn-default">R$ 69</a>
+			                        	<a href="<?php echo $this->baseUrl("/produto/index?id=1"); ?>" class="btn btn-primary"><i class="fa fa-shopping-cart"></i> Comprar</a>
 		                        	</div>
 		                        <p></p>
 		                    </div>
@@ -60,76 +60,78 @@
             		<span class="title">ENCERRAR CARRINHO</span>
             	</div>
 	            <div class="col-lg-12 col-sm-12 hero-feature">
+                        <form action="<?php echo $this->baseUrl('/carrinho/encerrar'); ?>" method="post">
 					<table class="table table-bordered tbl-checkout">
 						<tbody>
                             <tr>
                                 <td>Nome</td>
                                 <td>
-                                    <input type="text" name="" class="form-control">
+                                    <input type="text" name="nome" class="form-control">
                                 </td>
                                 <td>Sobrenome</td>
                                 <td>
-                                    <input type="text" name="" class="form-control">
+                                    <input type="text" name="sobrenome" class="form-control">
                                 </td>
                             </tr>
                             <tr>
                                 <td>E-mail</td>
                                 <td>
-                                    <input type="text" name="" class="form-control">
+                                    <input type="text" name="email" class="form-control">
                                 </td>
-                                <td>Telefone</td>
+                               <td>CEP</td>
                                 <td>
-                                    <input type="text" name="" class="form-control">
+                                    <input type="text" name="CEP" id="CEP" class="form-control">
                                 </td>
                             </tr>
                             <tr>
                                 <td>Endereco</td>
                                 <td colspan="3">
-                                    <textarea name="" class="form-control"></textarea>
+                                    <textarea id="endereco" name="endereco" class="form-control"></textarea>
                                 </td>
                             </tr>
                             <tr>
-                                <td>Cidade</td>
-                                <td>
-                                    <select class="form-control" id="cidades">
-                                        <?php
-                                        
-                                        ?>
-                                      </select>
-                                </td>
-                                <td>CEP</td>
-                                <td>
-                                    <input type="text" name="" class="form-control">
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Pais</td>
-                                <td>
-                                    <select class="form-control">
-                                        <option value="1"> Brasil </option>
-                                      </select>
-                                </td>
                                 <td class="tujuan">Estado</td>
                                 <td class="jne">
-                                    <select class="form-control" id="estado"><option value=""> --- Selecione cidade --- </option>
+                                    <select name="estado" class="form-control" id="estado"><option value=""> --- Selecione cidade --- </option>
                                         <?php
                                             for ($i = 0; $i < count($estados); $i++) {
-                                                echo '<option value="'.$estados[$i]['id'].'">'.$estados[$i]['nome'].'</option>';
+                                                echo '<option value="'.$estados[$i]['nome'].'">'.$estados[$i]['nome'].'</option>';
                                             }
                                         
                                         ?>
                                     </select>    
                                  </td>
+                                <td>Cidade</td>
+                                <td>
+                                    <select name="cidade" class="form-control" id="cidades">
+                                        <?php
+                                        
+                                        ?>
+                                      </select>
+                                </td>
+                                
+                            </tr>
+                            <tr>
+                                <td>Pais</td>
+                                <td>
+                                    <select name="pais" class="form-control">
+                                        <option value="1"> Brasil </option>
+                                      </select>
+                                </td>
+                                <td>Telefone</td>
+                                <td>
+                                    <input type="text" name="telefone" class="form-control">
+                                </td>
                             </tr>
                             <tr>
                                 <td>Comentario</td>
                                 <td colspan="3">
-                                    <textarea name="" class="form-control"></textarea>
+                                    <textarea name="comentario" class="form-control"></textarea>
                                 </td>
                             </tr>
                         </tbody>
 					</table>
-				                           
+                        				                           
                             <?php
                                 $storage = new Zend_Auth_Storage_Session();
                                 $data = $storage->read();
@@ -160,7 +162,7 @@
                                 echo '<tr>
                                 <td class="hidden-xs">
                                     <a href="'.$this->baseUrl('/produto/index?id='.$data[$i]['id']).'">
-                                        <img src="'.$this->baseUrl("assets/images/product-2.jpg").'" alt="'.$data[$i]['titulo'].'" title="" width="47" height="47">
+                                        <img src="'.$this->baseUrl("assets/images/cam".$data[$i]['id']."frente.jpg").'" alt="'.$data[$i]['titulo'].'" title="" width="47" height="47">
                                     </a>
                                 </td>
                                 <td><a href="detail.html">'.$data[$i]['titulo'].'</a>
@@ -198,9 +200,9 @@
                         </tbody>
 					</table>
 					<div class="btn-group btns-cart">
-						<button type="button" class="btn btn-primary">Continuar</button>
+						<input type="submit" class="btn btn-primary" value="Continuar" />  
 					</div>
-
+</form>
 	            </div>
         	</div>
         	<!-- End Cart -->
@@ -213,9 +215,26 @@
 <script type="text/javascript"> 
     
     $(function() {
+        $('#CEP').bind('change', function() {
+           console.log("mudou");
+           var cep = $('#CEP').val();
+           $.getJSON( "http://cep.correiocontrol.com.br/"+cep+".json", function( data ) {
+               // if (data )
+               $('#endereco').val(data.logradouro);
+                console.log(data);
+           });
+        });
+        
         $('#estado').bind('click', function() {
            $.post('cidade',{estado: $('#estado').val()}, function(response) {
-               console.log(response);
+               var cidades = "";
+               $.each(response, function(key,value) {
+                   cidades = cidades + '<option value="'+response[key].nome+'"> '+response[key].nome+' </option>';
+                   console.log(response[key].nome);
+               });
+               $('#cidades').html(cidades);
+//               <option value="1"> Brasil </option>
+//               console.log(response);
            }) ;
         });
         
