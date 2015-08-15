@@ -34,7 +34,7 @@ class CarrinhoController extends Zend_Controller_Action
         
         $this->_helper->layout->disableLayout();
         $this->_helper->viewRenderer->setNoRender(TRUE);
-        $this->_helper->json($cidades); 
+        $this->_helper->json($params); 
     }
     
     public function excluirprodutoAction() {
@@ -66,7 +66,7 @@ class CarrinhoController extends Zend_Controller_Action
     
     function encerrarAction() {
         $params = $this->_request->getParams();
- 
+        
         $pedidos = new Models_Pedidos();
         
         $idPedido = $pedidos->save($params);
@@ -76,12 +76,7 @@ class CarrinhoController extends Zend_Controller_Action
         
         $pedidos->save_produtos($idPedido, $data);
         
-//         print_r($prod);
-//        die('.');
-        
-        //
-        //
-        //$pedidos->sa
+        $this->redirect();  
     }
 }
 

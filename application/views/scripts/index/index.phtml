@@ -44,8 +44,15 @@
 		                        <p>Fachada da sede do Andre Gomes Team. Os melhores lutadores da historia do Muaythai tiraram fotos.</p>
 		                        <p>
 		                        	</p><div class="btn-group">
-			                        	<a href="#" class="btn btn-default">R$ 69</a>
-			                        	<a href="<?php echo $this->baseUrl("/produto/index?id=1"); ?>" class="btn btn-primary"><i class="fa fa-shopping-cart"></i> Comprar</a>
+                                                    <center><a href="javascript:void(0)" class="btn btn-default">R$ 69,90</a></center>
+                                                        <!-- INICIO FORMULARIO BOTAO PAGSEGURO -->
+<form action="https://pagseguro.uol.com.br/checkout/v2/cart.html?action=add" method="post">
+<!-- NÃO EDITE OS COMANDOS DAS LINHAS ABAIXO -->
+<input type="hidden" name="itemCode" value="F4EDF0E5C3C33A20047A3F80163195A8" />
+<input type="image" src="https://p.simg.uol.com.br/out/pagseguro/i/botoes/pagamentos/209x48-comprar-assina.gif" name="submit" alt="Pague com PagSeguro - é rápido, grátis e seguro!" />
+</form>
+<!-- FINAL FORMULARIO BOTAO PAGSEGURO -->
+<!--			                        	<a href="<?php echo $this->baseUrl("/produto/index?id=1"); ?>" class="btn btn-primary"><i class="fa fa-shopping-cart"></i> Comprar</a>-->
 		                        	</div>
 		                        <p></p>
 		                    </div>

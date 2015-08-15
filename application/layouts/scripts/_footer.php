@@ -26,7 +26,7 @@
         		<div class="column">
         			<h4>Suporte</h4>
         			<ul>
-                        <li><a href="contact.html">Contato</a></li>
+                        <li><a href="<?php echo $this->baseUrl("/index/contato"); ?>">Contato</a></li>
                         <li><a href="#">Telefone</a></li>
                         <li><a href="#">Email</a></li>
                         <li><a href="#">Endereço</a></li>

@@ -90,19 +90,19 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td class="tujuan">Estado</td>
-                                <td class="jne">
+                                <td class="tujuan" id="tdNomeEstado">Estado</td>
+                                <td class="jne" id="tdEstado">
                                     <select name="estado" class="form-control" id="estado"><option value=""> --- Selecione cidade --- </option>
                                         <?php
                                             for ($i = 0; $i < count($estados); $i++) {
-                                                echo '<option value="'.$estados[$i]['nome'].'">'.$estados[$i]['nome'].'</option>';
+                                                echo '<option value="'.$estados[$i]['id'].'">'.$estados[$i]['nome'].'</option>';
                                             }
                                         
                                         ?>
                                     </select>    
                                  </td>
                                 <td>Cidade</td>
-                                <td>
+                                <td id="tdCidade">
                                     <select name="cidade" class="form-control" id="cidades">
                                         <?php
                                         
@@ -221,6 +221,9 @@
            $.getJSON( "http://cep.correiocontrol.com.br/"+cep+".json", function( data ) {
                // if (data )
                $('#endereco').val(data.logradouro);
+               $('#tdCidade').html('<input type="text" class="form-control"  name="cidade" value="'+data.localidade+'"/>');
+               $('#tdNomeEstado').html('UF');
+               $('#tdEstado').html('<input type="text" class="form-control" name="estado" value="'+data.uf+'" />');
                 console.log(data);
            });
         });

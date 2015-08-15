@@ -54,7 +54,7 @@
 	            <!-- Shopping Cart List -->
 	            <div class="col-lg-3 col-md-4 col-sm-5">
 	                <div class="well">
-	                    <div class="btn-group btn-group-cart">
+<!--	                    <div class="btn-group btn-group-cart">
 	                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
                                 <span class="pull-left"><i class="fa fa-shopping-cart icon-cart"></i></span>
                                 <span id="tituloCarrinho" class="pull-left">Carrinho: <?php echo count($data); ?> item(s)</span>
@@ -78,7 +78,7 @@
                                 <li class="divider"></li>
                                 <li><a href="<?php echo $this->baseUrl('/carrinho/index') ?>">Total: R$<?php echo $valor; ?></a></li>
                             </ul>
-	                    </div>
+	                    </div>-->
 	                </div>
 	            </div>
 	            <!-- End Shopping Cart List -->
@@ -102,9 +102,12 @@
                 <ul class="nav navbar-nav">
                     <li><a href="<?php echo $this->baseUrl("/index"); ?>">Home</a></li>
                     <li><a href="<?php echo $this->baseUrl("/prensa"); ?>">Prensa</a></li>
-                    <li><a href="<?php echo $this->baseUrl("/carrinho"); ?>">Carrinho</a></li>
-                    <li><a href="<?php echo $this->baseUrl("/carrinho/checkout"); ?>">Checkout</a></li>
-                    <li class="nav-dropdown">
+<!--                    <li><a href="<?php echo $this->baseUrl("/carrinho"); ?>">Carrinho</a></li>-->
+                    <li><a href="<?php echo $this->baseUrl("/index/sobre"); ?>">Sobre nós</a></li>
+                     <li><a href="<?php echo $this->baseUrl("/index/contato"); ?>">Contato</a></li>
+                    <li><a href="http://www.worldfight.com.br/wordpress">Blog</a></li>
+<!--                    <li><a href="<?php echo $this->baseUrl("/carrinho/checkout"); ?>">Checkout</a></li>-->
+<!--                    <li class="nav-dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             Mais... <span class="caret"></span>
                         </a>
@@ -112,11 +115,11 @@
                             <li><a href="<?php echo $this->baseUrl("/index/sobre"); ?>">Sobre nós</a></li>
                             <li><a href="http://www.worldfight.com.br/wordpress">Blog</a></li>
                             <li><a href="<?php echo $this->baseUrl("/index/contato"); ?>">Contato</a></li>
-<!--                            <li><a href="compare.html">Compare</a></li>-->
-<!--                            <li><a href="<?php echo $this->baseUrl("/index/login"); ?>">Login</a></li>
-                            <li><a href="<?php echo $this->baseUrl("/index/cadastro"); ?>">Cadastro</a></li>-->
+                            <li><a href="compare.html">Compare</a></li>
+                            <li><a href="<?php echo $this->baseUrl("/index/login"); ?>">Login</a></li>
+                            <li><a href="<?php echo $this->baseUrl("/index/cadastro"); ?>">Cadastro</a></li>
                         </ul>
-                    </li>
+                    </li>-->
                 </ul>
             </div>
         </div>

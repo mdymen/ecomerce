@@ -106,7 +106,7 @@ $p = $this->producto;
 										<h3 class="col-xs-12">
                                                                                     R$
                                                                                     <span class="price-old" id="preco">
-											<?php echo $p['VL_PRECO_PROD'] ?>
+											<?php echo $p['VL_PRECO_PROD'].",90"; ?>
                                                                                     </span>
 										</h3>
 									</div>
@@ -158,10 +158,17 @@ $p = $this->producto;
 									</div>                                                                    
 									<div class="clearfix"></div>
 									<hr>
-									<div class="col-xs-12 input-qty-detail">
-										<div class="input-group bootstrap-touchspin"><span class="input-group-btn"><button class="btn btn-default bootstrap-touchspin-down" id="bajar" type="button">-</button></span><span class="input-group-addon bootstrap-touchspin-prefix" style="display: none;"></span><input type="text" id="quantidade" class="form-control input-qty text-center" value="1" style="display: block;"><span class="input-group-addon bootstrap-touchspin-postfix" style="display: none;"></span><span class="input-group-btn"><button id="subir" class="btn btn-default bootstrap-touchspin-up" type="button">+</button></span></div>
+									<div style="text-align:center" class="col-xs-12 input-qty-detail">
+                                                                             <!-- INICIO FORMULARIO BOTAO PAGSEGURO -->
+                                                                            <form action="https://pagseguro.uol.com.br/checkout/v2/cart.html?action=add" method="post">
+                                                                            <!-- N√O EDITE OS COMANDOS DAS LINHAS ABAIXO -->
+                                                                                <input type="hidden" name="itemCode" value="F4EDF0E5C3C33A20047A3F80163195A8" />
+                                                                                <input type="image" src="https://p.simg.uol.com.br/out/pagseguro/i/botoes/pagamentos/209x48-comprar-assina.gif" name="submit" alt="Pague com PagSeguro - È r·pido, gr·tis e seguro!" />
+                                                                            </form>
+                                                                            <!-- FINAL FORMULARIO BOTAO PAGSEGURO -->
+<!--										<div class="input-group bootstrap-touchspin"><span class="input-group-btn"><button class="btn btn-default bootstrap-touchspin-down" id="bajar" type="button">-</button></span><span class="input-group-addon bootstrap-touchspin-prefix" style="display: none;"></span><input type="text" id="quantidade" class="form-control input-qty text-center" value="1" style="display: block;"><span class="input-group-addon bootstrap-touchspin-postfix" style="display: none;"></span><span class="input-group-btn"><button id="subir" class="btn btn-default bootstrap-touchspin-up" type="button">+</button></span></div>
 										<button id="btnAdicionar" class="btn btn-default pull-left"><i class="fa fa-shopping-cart"></i> Adicionar ao carrinho</button>
-                                                                                
+                                                                                -->
 									</div>
                                                                         <div style="display:none;" id="carrinhoExito" class="col-xs-12 input-qty-detail"><font color="green">Produto adicionado com exito no carrinho!!</font></div>
 									<div class="clearfix"></div><br>
@@ -186,6 +193,7 @@ $p = $this->producto;
 							<ul class="nav nav-tabs">
 								<li class="active"><a href="#desc" data-toggle="tab">Descri√ß√£o</a></li>
 								<li><a href="#detail" data-toggle="tab">Historia</a></li>
+                                
 <!--								<li><a href="#review" data-toggle="tab">Opin</a></li>-->
 							</ul>
 
@@ -336,7 +344,9 @@ $p = $this->producto;
 
         </div>
 	</div>
-    
+    <div>
+        <img src="<?php echo $this->baseUrl("assets/images/pagamentos.jpg"); ?>" alt=""/>
+    </div>
     <script type="text/javascript">
         $(function() {
             $('#subir').bind('click', function() {
