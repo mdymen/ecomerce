@@ -3,7 +3,24 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/xampp/htdocs/base/application/configs/application.ini</file>
+            <file>file:/C:/xampp/htdocs/ecomerce/application/controllers/ProdutoController.php</file>
+            <file>file:/C:/xampp/htdocs/ecomerce/application/views/scripts/carrinho/index.phtml</file>
+            <file>file:/C:/xampp/htdocs/ecomerce/application/views/scripts/index/contato.phtml</file>
+            <file>file:/C:/xampp/htdocs/ecomerce/application/views/scripts/produto/index.phtml</file>
+            <file>file:/C:/xampp/htdocs/ecomerce/application/controllers/IndexController.php</file>
+            <file>file:/C:/xampp/htdocs/ecomerce/application/controllers/PrensaController.php</file>
+            <file>file:/C:/xampp/htdocs/ecomerce/application/views/scripts/index/sobre.phtml</file>
+            <file>file:/C:/xampp/htdocs/ecomerce/application/models/Pais.php</file>
+            <file>file:/C:/xampp/htdocs/ecomerce/application/models/Usuarios.php</file>
+            <file>file:/C:/xampp/htdocs/ecomerce/application/controllers/CarrinhoController.php</file>
+            <file>file:/C:/xampp/htdocs/ecomerce/application/views/scripts/carrinho/checkout.phtml</file>
+            <file>file:/C:/xampp/htdocs/ecomerce/application/configs/scriptsql.sql</file>
+            <file>file:/C:/xampp/htdocs/ecomerce/application/views/scripts/index/index.phtml</file>
+            <file>file:/C:/xampp/htdocs/ecomerce/application/views/scripts/prensa/index.phtml</file>
+            <file>file:/C:/xampp/htdocs/ecomerce/application/layouts/scripts/_footer.php</file>
+            <file>file:/C:/xampp/htdocs/ecomerce/application/controllers/TesteController.php</file>
+            <file>file:/C:/xampp/htdocs/ecomerce/application/models/Pedidos.php</file>
+            <file>file:/C:/xampp/htdocs/ecomerce/application/layouts/scripts/_head.php</file>
         </group>
     </open-files>
 </project-private>

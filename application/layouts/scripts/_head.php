@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
+    <link rel="shortcut icon" href="<?php echo $this->baseUrl("assets/images/logo.jpg"); ?>" type="image/x-icon">
     <title>World Fight</title>
 
     <?php $this->headLink()->appendStylesheet($this->baseUrl('assets/css/bootstrap.css'))?>

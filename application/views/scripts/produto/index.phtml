@@ -1,6 +1,7 @@
 <?php
 
 $p = $this->producto;
+
 ?>
 
 <input type="hidden" id="produto" value="<?php echo $p['ID_ID_PROD']; ?>" />
@@ -106,7 +107,7 @@ $p = $this->producto;
 										<h3 class="col-xs-12">
                                                                                     R$
                                                                                     <span class="price-old" id="preco">
-											<?php echo $p['VL_PRECO_PROD'].",90"; ?>
+											<?php echo $p['VL_PRECO_PROD'].",00"; ?>
                                                                                     </span>
 										</h3>
 									</div>
@@ -160,12 +161,7 @@ $p = $this->producto;
 									<hr>
 									<div style="text-align:center" class="col-xs-12 input-qty-detail">
                                                                              <!-- INICIO FORMULARIO BOTAO PAGSEGURO -->
-                                                                            <form action="https://pagseguro.uol.com.br/checkout/v2/cart.html?action=add" method="post">
-                                                                            <!-- NÃO EDITE OS COMANDOS DAS LINHAS ABAIXO -->
-                                                                                <input type="hidden" name="itemCode" value="F4EDF0E5C3C33A20047A3F80163195A8" />
-                                                                                <input type="image" src="https://p.simg.uol.com.br/out/pagseguro/i/botoes/pagamentos/209x48-comprar-assina.gif" name="submit" alt="Pague com PagSeguro - é rápido, grátis e seguro!" />
-                                                                            </form>
-                                                                            <!-- FINAL FORMULARIO BOTAO PAGSEGURO -->
+                                                                            <?php echo $p['ST_BOTAO_PROD']; ?>
 <!--										<div class="input-group bootstrap-touchspin"><span class="input-group-btn"><button class="btn btn-default bootstrap-touchspin-down" id="bajar" type="button">-</button></span><span class="input-group-addon bootstrap-touchspin-prefix" style="display: none;"></span><input type="text" id="quantidade" class="form-control input-qty text-center" value="1" style="display: block;"><span class="input-group-addon bootstrap-touchspin-postfix" style="display: none;"></span><span class="input-group-btn"><button id="subir" class="btn btn-default bootstrap-touchspin-up" type="button">+</button></span></div>
 										<button id="btnAdicionar" class="btn btn-default pull-left"><i class="fa fa-shopping-cart"></i> Adicionar ao carrinho</button>
                                                                                 -->
