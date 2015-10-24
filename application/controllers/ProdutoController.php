@@ -111,16 +111,17 @@ class ProdutoController extends Zend_Controller_Action
         
         $prazo = file_get_contents("http://ws.correios.com.br/calculador/CalcPrecoPrazo.asmx/CalcPrazo?nCdServico=40010&sCepOrigem=13010215&sCepDestino=".$params['CEP']);
         
-        $preco = file_get_contents("http://ws.correios.com.br/calculador/CalcPrecoPrazo.asmx/CalcPreco?nCdEmpresa=&sDsSenha=&nCdServico=40010&sCepOrigem=13010215&sCepDestino=".$params['CEP']."&nVlPeso=1&nCdFormato=1&nVlComprimento=16.0&nVlAltura=2.0&nVlLargura=11.0&nVlDiametro=1.0&sCdMaoPropria=N&nVlValorDeclarado=0&sCdAvisoRecebimento=N");
+        $preco = file_get_contents("http://ws.correios.com.br/calculador/CalcPrecoPrazo.asmx/CalcPreco?nCdEmpresa=&sDsSenha=&nCdServico=41106&sCepOrigem=13010215&sCepDestino=".$params['CEP']."&nVlPeso=1&nCdFormato=1&nVlComprimento=16.0&nVlAltura=2.0&nVlLargura=11.0&nVlDiametro=1.0&sCdMaoPropria=N&nVlValorDeclarado=0&sCdAvisoRecebimento=N");
 
         $res = $this->xml2array(new SimpleXMLElement($preco));
         $resPrazo = $this->xml2array(new SimpleXMLElement($prazo));
+        
         
         $resultado['Preco'] = $res['Servicos']['cServico'];
         $resultado['Prazo'] = $resPrazo['Servicos']['cServico'];
 //        print_r($xml);
 //        die(".");
-                
+         $resultado['Preco'] = str_replace(",",".",$resultado['Preco']);   
                         $this->getResponse()
          ->setHeader('Content-Type', 'application/json');
         

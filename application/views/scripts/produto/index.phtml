@@ -360,7 +360,9 @@ $p = $this->producto;
             $('#correio').bind('click', function() {
                 $.post('correio',{CEP: $('#CEP').val()}, function(response) {
                    var prazo = response.Prazo.PrazoEntrega + " dia(s)";
-                   var preco = 'R$ ' + response.Preco.Valor;
+                   var precoAux = (parseFloat(response.Preco.Valor)  - 10).toString();
+                   var preco = 'R$ ' + precoAux.slice(0,4);
+                   console.log(response.Preco.Valor);
                    if (response.Prazo.MsgErro.length !== 0) {
                        prazo = '<font color="red">'+response.Prazo.MsgErro+'</font>';
                    }

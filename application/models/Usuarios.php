@@ -29,6 +29,7 @@ class Models_Usuarios extends Zend_Db_Table {
             'ST_SENHA_USU' => $params['senha']
         );
         
+        
         $db->insert($this->_name, $info);
     }
     

@@ -17,6 +17,17 @@ class indexController extends Zend_Controller_Action
     return $out;
 }
     
+public function androidAction() {
+    $params = $this->_request->getParams();
+    
+    $usuario = new Models_Usuarios();
+    $usuario->save(array("email" => $params["email"], "senha" => $params["senha"]));
+    
+    print_r($params);
+    
+    die("...");
+}
+
     public function indexAction()       
     {
 //        $xml = file_get_contents("http://ws.correios.com.br/calculador/CalcPrecoPrazo.asmx/CalcPreco?nCdEmpresa=&sDsSenha=&nCdServico=40010&sCepOrigem=13015130&sCepDestino=13010215&nVlPeso=1&nCdFormato=1&nVlComprimento=16.0&nVlAltura=2.0&nVlLargura=11.0&nVlDiametro=1.0&sCdMaoPropria=N&nVlValorDeclarado=0&sCdAvisoRecebimento=N");
