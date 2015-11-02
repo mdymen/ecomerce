@@ -42,10 +42,10 @@ class Models_Usuario extends Zend_Db_Table {
 
         $res = $select->query()->fetch();
         
-        if ($res[0] != "") {
-            return true;
+        if ($res != "") {
+            return $res["ID_ID_USU"];
         }
-        return false;
+        return "";
     }
     
 }
