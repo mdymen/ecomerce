@@ -20,6 +20,17 @@ class Lutador extends Zend_Db_Table {
         $this->_db = Zend_Db_Table::getDefaultAdapter();
     }
     
+    function load($id) {
+        $select = $this->_db->select()->from("lutador")->where("ID_ID_LUT = ? ",$id);
+
+        $res = $select->query()->fetch();
+        
+        if ($res != "") {
+            return $res;
+        }
+        return "";
+    }
+    
     function save($params) {
         
         $db = $this->_db;

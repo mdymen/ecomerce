@@ -91,6 +91,16 @@ class AgtController extends Zend_Controller_Action {
         
     }
     
+    public function getlutadorAction() {
+        $params = $this->_request->getParams();
+        
+        $lutador = new Lutador();
+        
+        $result = $lutador->load($params["id"]);
+        
+        $this->_helper->json($result);
+    }
+    
     public function adicionarlutadorAction() {
         $params = $this->_request->getParams();
         
