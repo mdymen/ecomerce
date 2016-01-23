@@ -14,21 +14,18 @@
 require_once APPLICATION_PATH.'/Models/Usuario.php';
 require_once APPLICATION_PATH.'/Models/Academia.php';
 require_once APPLICATION_PATH.'/Models/Lutador.php';
+require_once APPLICATION_PATH.'/Models/Treino.php';
+require_once APPLICATION_PATH.'/Models/Luta.php';
 class AgtController extends Zend_Controller_Action {
     
     public function signinAction() {
         try {
 
             $params = $this->_request->getParams();
-
-      
-            
             $usuario = new Models_Usuario();
             $usuario->save($params);
 
             $this->_helper->json(true);                    
-                
-
         }
         catch (Exception $e) {
             
@@ -40,8 +37,6 @@ class AgtController extends Zend_Controller_Action {
 
         $this->_helper->layout->disableLayout();
         $this->_helper->viewRenderer->setNoRender(TRUE);
-         
-        
     }
     
     public function loginAction() {
@@ -91,6 +86,18 @@ class AgtController extends Zend_Controller_Action {
         
     }
     
+    public function treinarAction() {
+        $params = $this->_request->getParams();
+  
+        $treinar = new Models_Treinos();
+        $result = $treinar->treino($params);
+        
+        $this->_helper->layout->disableLayout();
+        $this->_helper->viewRenderer->setNoRender(TRUE);
+        
+        $this->_helper->json($result);
+    }
+    
     public function getlutadorAction() {
         $params = $this->_request->getParams();
         
@@ -98,8 +105,15 @@ class AgtController extends Zend_Controller_Action {
         
         $result = $lutador->load($params["id"]);
         
+        $this->getResponse()
+             ->setHeader('Content-Type', 'application/json');
+
+        $this->_helper->layout->disableLayout();
+        $this->_helper->viewRenderer->setNoRender(TRUE);
+        
         $this->_helper->json($result);
     }
+    
     
     public function adicionarlutadorAction() {
         $params = $this->_request->getParams();
@@ -156,5 +170,52 @@ class AgtController extends Zend_Controller_Action {
 
         $this->_helper->layout->disableLayout();
         $this->_helper->viewRenderer->setNoRender(TRUE);
+    }
+    
+    public function getlutasAction() {
+        $luta = new Models_Luta();
+        
+        $result = $luta->load_actual();
+        
+        $this->getResponse()
+             ->setHeader('Content-Type', 'application/json');
+
+        $this->_helper->layout->disableLayout();
+        $this->_helper->viewRenderer->setNoRender(TRUE);
+        
+        $this->_helper->json($result);        
+    }
+    
+    public function getlutaAction() {
+        $params = $this->_request->getParams();
+        
+        $luta = new Models_Luta();
+        
+        $result = $luta->load($params['id']);
+        
+        $this->getResponse()
+             ->setHeader('Content-Type', 'application/json');
+
+        $this->_helper->layout->disableLayout();
+        $this->_helper->viewRenderer->setNoRender(TRUE);
+        
+        $this->_helper->json($result);        
+    }
+    
+    public function adicionarlutaAction() { 
+        $params = $this->_request->getParams();
+        
+        $luta = new Models_Luta();
+        
+        $result = $luta->save($params);
+        
+        
+        $this->getResponse()
+             ->setHeader('Content-Type', 'application/json');
+
+        $this->_helper->layout->disableLayout();
+        $this->_helper->viewRenderer->setNoRender(TRUE);
+        
+        $this->_helper->json($result);
     }
 }
