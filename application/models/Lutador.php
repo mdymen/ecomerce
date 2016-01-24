@@ -53,4 +53,15 @@ class Lutador extends Zend_Db_Table {
 
         return $result;
     }
+    
+    function lutadores() {
+        $select = $this->_db->select()->from("lutador");
+
+        $res = $select->query()->fetchAll();
+        
+        if ($res != "") {
+            return $res;
+        }
+        return "";
+    }
 }

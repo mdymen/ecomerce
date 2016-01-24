@@ -18,6 +18,53 @@ require_once APPLICATION_PATH.'/Models/Treino.php';
 require_once APPLICATION_PATH.'/Models/Luta.php';
 class AgtController extends Zend_Controller_Action {
     
+    protected $nomes = array("Carlos", "Roberto", "Rodrigo", "Hernan","Pedro","Henrique","Pablo");
+    protected $sobenome = array("Gutierrez","Silva","Perez","Santos","Gilmar","Sires","Ramos");
+    
+    public function autolutadoresAction() {
+
+        $lutador = new Lutador();
+        for ($i = 0; $i < 10; $i++) {
+            $nome = $this->nomes[rand(0,6)]." ".$this->sobenome[rand(0,6)];
+            $params = array("nome" => $nome, "academia" => 1);
+            $lutador->save($params);
+        }
+        
+        print_r(".");
+        die(".");
+       
+    }
+    
+    public function armarlutasAction() {
+        $lutador = new Lutador();
+        
+        $lutadores1 = $lutador->lutadores();
+        $lutadores2 = $lutador->lutadores();
+        
+        foreach ($lutadores1 as $l) {
+            $rival = rand(0, count($lutadores2));
+            
+            $lutador1 = $l['ID_ID_LUT'];
+            $lutador2 = $lutadores2[$rival];
+            
+           // print_r($l."-");
+            
+            $info = array(
+                'data' => date("Y-m-d"),
+                'lut1' => $lutador1,
+                'lut2' => $lutador2['ID_ID_LUT']
+            );
+            
+            //print_r($info);
+            $luta = new Models_Luta();
+            $luta->save($info);
+
+        }
+        
+        die("-");
+        
+    }
+    
     public function signinAction() {
         try {
 
@@ -191,7 +238,7 @@ class AgtController extends Zend_Controller_Action {
         
         $luta = new Models_Luta();
         
-        $result = $luta->load($params['id']);
+        $result = $luta->getluta($params['id']);
         
         $this->getResponse()
              ->setHeader('Content-Type', 'application/json');
@@ -218,4 +265,6 @@ class AgtController extends Zend_Controller_Action {
         
         $this->_helper->json($result);
     }
+    
+    
 }
