@@ -266,5 +266,106 @@ class AgtController extends Zend_Controller_Action {
         $this->_helper->json($result);
     }
     
+    public function executarlutaAction() {
+        $params = $this->_request->getParams();
+        
+        $lutaobj = new Models_Luta();
+        $luta = $lutaobj->getluta(1);
+        
+        $caract = array(
+            "Boxe",
+            "Cotovelo",
+            "Chute",
+            "Joelhada",
+            "Clinch",
+            "Resistencia",
+            "Velocidade",
+            "Explocao",
+            "Estadofisico"
+        );
+        
+        $puntagem_1 = 0;
+        $puntagem_2 = 0;
+        
+        for ($i = 0; $i < 36; $i++) {
+            $c = rand(0,8);
+            $stc = $caract[$c];
+            
+            print_r($stc."<br>");
+            
+            $lut1 = $luta["lu1".$stc];
+            $lut2 = $luta["lu2".$stc];
+            
+            $res = $lut1 - $lut2;
+            
+            if ($res > 0) { $mayor = true; }
+            if ($res < 0) { $mayor = false; }
+            if ($res == 0) { $mayor = "empate"; }
+            
+            $mayor = $res > 0;
+            $ventaja = $res > 0 ? "ventaja 1" : "ventaja 2"; 
+            print_r($ventaja."  con   ".abs($res)."<br>");
+            
+            $g = 0;
+            if (strcmp("emptate",$mayor) == 0) {
+                $ganador = $this->executarempate("lut1", "lut2", abs($res));
+            } else {
+                if ($mayor) {
+                    $ganador = $this->executar("lut1", "lut2", abs($res));
+                } else  {
+                    $ganador = $this->executar("lut2", "lut1", abs($res));
+                } 
+            }
+    
+            if (strcmp($ganador, "lut1") == 0) {
+                $g = 1;
+                $puntagem_1 = $puntagem_1 + 1;
+                print_r("ganador 1  - ".$puntagem_1." a ".$puntagem_2."<br>");
+            } else {
+                $g = 2;
+                $puntagem_2 = $puntagem_2 + 1;
+                print_r("ganador 2  - ".$puntagem_1." a ".$puntagem_2."<br>");
+            }
+           
+            $comentarios = $this->getComentarios();
+            $res_comentarios = $comentarios[rand(0,30)];
+            print_r($res_comentarios."<br>");
+            
+            $lutaobj->save_comentario(array(
+                'id' => $luta['ID_ID_LUTA'],
+                'comentario' => $res_comentarios,
+                'ganador' => $luta["lu".$g."Luta"]
+            ));
+        }
+        
+        die(".");
+    }
+    
+    function executarempate($lut1, $lut2) {
+        $r = rand(0,1);
+        if ($r == 0) {
+            return $lut1;
+        }
+        return $lut2;
+    }
+    
+    function executar($mayor, $menor, $dif) {
+        
+        for ($i = -1; $i < $dif; $i++) {
+            $ganador = rand(0,1);
+            if ($ganador == 0) {
+                return $mayor;
+            }
+        }
+        return $menor;
+    }
+    
+    function getComentarios() {
+        $comentarios = array();
+        for ($i = 0; $i < 30; $i++) {
+            $comentarios[$i] = "comentarios ".$i;
+        }
+        return $comentarios;
+    }
     
 }
